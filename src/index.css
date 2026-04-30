@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #e83a66;
+  --color-primary-hover: #c42953;
+  --color-secondary: #fef1f4;
+  --color-text-main: #333333;
+  --color-text-muted: #666666;
+  --color-bg-base: #ffffff;
+  --color-bg-subtle: #f9f9f9;
+}
+
+@layer base {
+  body {
+    @apply text-[--color-text-main] bg-[--color-bg-base] font-sans antialiased;
+  }
+
+  /* Focus visible for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+}
+
+@layer utilities {
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-2 rounded-md font-medium hover:bg-primary-hover transition-colors shadow-sm;
+  }
+
+  .btn-outline {
+    @apply border border-primary text-primary px-6 py-2 rounded-md font-medium hover:bg-secondary transition-colors;
+  }
+
+  /* Toast slide-in animation */
+  @keyframes slide-in {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.3s ease-out forwards;
+  }
+}
