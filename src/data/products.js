@@ -5,8 +5,13 @@ export const products = [
     price: 549,
     image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Birthday",
+    type: "Classic",
+    flavour: "Chocolate",
     rating: 4.8,
-    description: "A rich, moist chocolate truffle cake layered with dark chocolate ganache. Perfect for any celebration."
+    description: "A rich, moist chocolate truffle cake layered with dark chocolate ganache. Perfect for any celebration.",
+    isEggless: false,
+    weightOptions: [0.5, 1, 1.5, 2],
+    pincodes: ["110001", "110002", "560001", "400001", "500001"]
   },
   {
     id: 2,
@@ -14,8 +19,13 @@ export const products = [
     price: 699,
     image: "https://images.unsplash.com/photo-1616541823729-00fe0aacd32c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Anniversary",
+    type: "Heart Shaped Cakes",
+    flavour: "Red Velvet",
     rating: 4.9,
-    description: "Beautiful red velvet sponge layered with smooth cream cheese frosting."
+    description: "Beautiful red velvet sponge layered with smooth cream cheese frosting.",
+    isEggless: true,
+    weightOptions: [0.5, 1, 2],
+    pincodes: ["110001", "560001", "400001"]
   },
   {
     id: 3,
@@ -23,8 +33,13 @@ export const products = [
     price: 499,
     image: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Birthday",
+    type: "Classic",
+    flavour: "Black Forest",
     rating: 4.6,
-    description: "Classic black forest with fresh whipped cream and cherries."
+    description: "Classic black forest with fresh whipped cream and cherries.",
+    isEggless: false,
+    weightOptions: [0.5, 1, 1.5, 2],
+    pincodes: ["110001", "110002", "560001", "400001", "500001"]
   },
   {
     id: 4,
@@ -32,8 +47,13 @@ export const products = [
     price: 529,
     image: "https://images.unsplash.com/photo-1542826438-bd32f43d626f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Designer Cakes",
+    type: "Designer",
+    flavour: "Butterscotch",
     rating: 4.5,
-    description: "Crunchy butterscotch nuts blended in caramel flavored fresh cream."
+    description: "Crunchy butterscotch nuts blended in caramel flavored fresh cream.",
+    isEggless: true,
+    weightOptions: [1, 2],
+    pincodes: ["110001", "110002", "400001"]
   },
   {
     id: 5,
@@ -41,8 +61,13 @@ export const products = [
     price: 749,
     image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Anniversary",
+    type: "Photo Cakes",
+    flavour: "Fruit",
     rating: 4.7,
-    description: "Vanilla sponge loaded with seasonal fresh fruits and light cream."
+    description: "Vanilla sponge loaded with seasonal fresh fruits and light cream.",
+    isEggless: true,
+    weightOptions: [1, 1.5, 2],
+    pincodes: ["560001", "400001", "500001"]
   },
   {
     id: 6,
@@ -50,8 +75,13 @@ export const products = [
     price: 449,
     image: "https://images.unsplash.com/photo-1587314168485-3236d6710814?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Birthday",
+    type: "Eggless Cakes",
+    flavour: "Pineapple",
     rating: 4.4,
-    description: "Soft vanilla sponge layered with freshly chopped pineapples."
+    description: "Soft vanilla sponge layered with freshly chopped pineapples.",
+    isEggless: true,
+    weightOptions: [0.5, 1, 2],
+    pincodes: ["110001", "110002", "560001", "400001", "500001"]
   },
   {
     id: 7,
@@ -59,8 +89,13 @@ export const products = [
     price: 599,
     image: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Designer Cakes",
+    type: "Gourmet",
+    flavour: "Coffee",
     rating: 4.8,
-    description: "Premium coffee flavored cake topped with roasted walnuts."
+    description: "Premium coffee flavored cake topped with roasted walnuts.",
+    isEggless: false,
+    weightOptions: [0.5, 1],
+    pincodes: ["110001", "400001", "500001"]
   },
   {
     id: 8,
@@ -68,13 +103,21 @@ export const products = [
     price: 649,
     image: "https://images.unsplash.com/photo-1514517521153-1be72277b32f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Birthday",
+    type: "Cheese Cakes",
+    flavour: "Mango",
     rating: 4.9,
-    description: "Light and airy mango mousse on a thin layer of vanilla sponge."
+    description: "Light and airy mango mousse on a thin layer of vanilla sponge.",
+    isEggless: true,
+    weightOptions: [1, 2],
+    pincodes: ["110001", "560001", "500001"]
   }
 ];
 
 export const categories = [
-  { name: "Birthday", image: "https://images.unsplash.com/photo-1530103862676-de8892ebe814?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-  { name: "Anniversary", image: "https://images.unsplash.com/photo-1518192167132-4d00ba152642?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
-  { name: "Designer Cakes", image: "https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" }
+  { name: "Trending Cakes", image: "https://images.unsplash.com/photo-1530103862676-de8892ebe814?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+  { name: "By Type", image: "https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+  { name: "By Flavours", image: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+  { name: "Kids Cakes", image: "https://images.unsplash.com/photo-1587314168485-3236d6710814?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+  { name: "Character Cakes", image: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+  { name: "Grown Up Cakes", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" }
 ];
