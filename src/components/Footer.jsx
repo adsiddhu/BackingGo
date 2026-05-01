@@ -1,80 +1,101 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, CakeSlice, CircleDot, Square, Hexagon } from 'lucide-react';
+import React from "react";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
-const Footer = () => {
+export function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Brand */}
-          <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2 text-white">
-              <CakeSlice className="h-8 w-8 text-primary" />
-              <span className="font-bold text-2xl tracking-tight">Bakingo Clone</span>
-            </Link>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Delivering happiness through fresh, delicious, and beautifully crafted cakes for every occasion.
+    <section
+      className="relative pt-12 pb-10 bg-cover bg-center"
+      style={{
+        backgroundImage:
+          "url('src/media/footer-background.0f80c8bb.svg')",
+      }}
+    >
+      {/* Overlay for soft effect */}
+      <div className="absolute inset-0 bg-[#f5e6d8]/90"></div>
+
+      <div className="relative z-10">
+
+        {/* Newsletter */}
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 mb-12">
+          <h2 className="text-xl md:text-2xl font-semibold text-red-500">
+            SUBSCRIBE TO OUR NEWSLETTER
+          </h2>
+
+          {/* Input */}
+          <div className="flex items-center border border-red-400 rounded-md overflow-hidden w-full md:w-[400px]">
+            <input
+              type="email"
+              placeholder="Enter Email Address"
+              className="flex-1 px-4 py-2 outline-none bg-transparent"
+            />
+            <button className="px-4 text-red-500 text-xl">→</button>
+          </div>
+        </div>
+
+        {/* Footer Content */}
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+
+          {/* Logo + Social */}
+          <div>
+            <img
+              src="https://bkassets.bakingo.com/bakingo-ssr/static/media/bakingo.8d020708.svg"
+              alt="Bakingo Logo"
+              className="mb-4"
+            />
+
+            <p className="text-sm text-gray-600 mb-4">
+              © 2026. FA GIFTS PVT. LTD.
             </p>
-            <div className="flex gap-4 pt-2">
-              <a href="#" className="hover:text-primary transition-colors"><CircleDot size={20} /></a>
-              <a href="#" className="hover:text-primary transition-colors"><Square size={20} /></a>
-              <a href="#" className="hover:text-primary transition-colors"><Hexagon size={20} /></a>
+
+            <div
+              className="flex gap-4 text-red-500 text-lg">
+              <FaFacebookF />
+              <FaInstagram />
+              <FaXTwitter />
+              <FaLinkedinIn />
+              <FaYoutube />
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Know Us */}
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><Link to="/about" className="hover:text-primary transition-colors text-sm">About Us</Link></li>
-              <li><Link to="/products" className="hover:text-primary transition-colors text-sm">All Cakes</Link></li>
-              <li><Link to="#" className="hover:text-primary transition-colors text-sm">Corporate Orders</Link></li>
-              <li><Link to="#" className="hover:text-primary transition-colors text-sm">Track Order</Link></li>
+            <h3 className="font-semibold text-red-500 mb-3">KNOW US</h3>
+            <ul className="space-y-2 text-gray-700">
+              <li>Our Story</li>
+              <li>Contact Us</li>
+              <li>Locate Us</li>
+              <li>Blog</li>
+              <li>Media</li>
+              <li>Careers</li>
             </ul>
           </div>
 
-          {/* Categories */}
+          {/* Need Help */}
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">Categories</h3>
-            <ul className="space-y-2">
-              <li><Link to="/products?category=Birthday" className="hover:text-primary transition-colors text-sm">Birthday Cakes</Link></li>
-              <li><Link to="/products?category=Anniversary" className="hover:text-primary transition-colors text-sm">Anniversary Cakes</Link></li>
-              <li><Link to="/products?category=Designer Cakes" className="hover:text-primary transition-colors text-sm">Designer Cakes</Link></li>
-              <li><Link to="/products?category=Photo Cakes" className="hover:text-primary transition-colors text-sm">Photo Cakes</Link></li>
+            <h3 className="font-semibold text-red-500 mb-3">NEED HELP</h3>
+            <ul className="space-y-2 text-gray-700">
+              <li>FAQ</li>
+              <li>Cancellation And Refund</li>
+              <li>Privacy Policy</li>
+              <li>Terms And Conditions</li>
+              <li>Customer Grievance</li>
+              <li>Sitemap</li>
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* More Info */}
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">Contact Us</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3 text-sm">
-                <MapPin className="text-primary shrink-0 mt-0.5" size={18} />
-                <span>123 Baker Street, Sweet City, SC 12345</span>
-              </li>
-              <li className="flex items-center gap-3 text-sm">
-                <Phone className="text-primary shrink-0" size={18} />
-                <span>+1 234 567 890</span>
-              </li>
-              <li className="flex items-center gap-3 text-sm">
-                <Mail className="text-primary shrink-0" size={18} />
-                <span>support@bakingoclone.com</span>
-              </li>
+            <h3 className="font-semibold text-red-500 mb-3">MORE INFO</h3>
+            <ul className="space-y-2 text-gray-700">
+              <li>Corporate Cakes</li>
+              <li>Coupons & Offers</li>
+              <li>Download App</li>
             </ul>
           </div>
-        </div>
 
-        <div className="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Bakingo Clone. All rights reserved.</p>
-          <div className="flex gap-4">
-            <Link to="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link to="#" className="hover:text-primary transition-colors">Terms of Service</Link>
-          </div>
         </div>
       </div>
-    </footer>
+    </section>
   );
-};
-
-export default Footer;
+}

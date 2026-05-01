@@ -1,0 +1,64 @@
+import React from "react";
+
+export function MenuSection() {
+  const categories = [
+    {
+      name: "CLASSIC",
+      img: "src/media/Regular-Cake.jpg",
+    },
+    {
+      name: "GOURMET",
+      img: "src/media/Signature.jpg",
+    },
+    {
+      name: "DESIGNER",
+      img: "src/media/Theme-Cake (2).jpg",
+    },
+    {
+      name: "PHOTO CAKES",
+      img: "src/media/Photo Cake_4_0.jpg",
+    },
+    {
+      name: "DESSERTS",
+      img: "src/media/Dessert (2).jpg",
+    },
+  ];
+  return (
+    <section className="bg-[#f6e9eb] py-14">
+      <div className="max-w-7xl mx-auto px-6 text-center">
+
+        {/* Heading */}
+        <h2 className="text-3xl font-bold text-red-500 mb-2">
+          Menu
+        </h2>
+        <p className="text-gray-600 mb-10 text-lg">
+          What will you wish for?
+        </p>
+
+        {/* Horizontal Scroll Cards */}
+        <div className="flex gap-6 overflow-x-auto scrollbar-hide">
+          {categories.map((item, i) => (
+            <div
+              key={i}
+              className="min-w-[225px] cursor-pointer group"
+            >
+              {/* Image Card */}
+              <div className="rounded-2xl overflow-hidden shadow-md">
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="w-full h-65 object-cover group-hover:scale-105 transition duration-300"
+                />
+              </div>
+
+              {/* Title */}
+              <h3 className="mt-4 font-semibold text-sm tracking-wide">
+                {item.name}
+              </h3>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
