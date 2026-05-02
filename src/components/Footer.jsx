@@ -38,11 +38,13 @@ export function Footer() {
 
           {/* Logo + Social */}
           <div>
-            <img
-              src="https://bkassets.bakingo.com/bakingo-ssr/static/media/bakingo.8d020708.svg"
-              alt="Bakingo Logo"
-              className="mb-4"
-            />
+            <a href="/">
+              <img
+                src="https://bkassets.bakingo.com/bakingo-ssr/static/media/bakingo.8d020708.svg"
+                alt="BakingGo Logo"
+                className="mb-4"
+              />
+            </a>
 
             <p className="text-sm text-gray-600 mb-4">
               © 2026. FA GIFTS PVT. LTD.

@@ -1,3 +1,5 @@
+import React from "react";
+
 export function MagicalTicket() {
     return (
         <section className="bg-gray-100 py-12">

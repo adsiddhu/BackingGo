@@ -1,3 +1,6 @@
+import React from "react";
+import { Heart, Star } from "lucide-react";
+
 export function IndiaLoves() {
     const products = [
         {

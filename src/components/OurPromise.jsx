@@ -1,5 +1,7 @@
+import React from "react";
+
 export function OurPromise() {
-    
+
     const promises = [
         {
             title: "ON-TIME DELIVERY",

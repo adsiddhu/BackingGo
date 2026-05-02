@@ -4,16 +4,23 @@ import { Filter, Search as SearchIcon, X, Check } from 'lucide-react';
 import { products, categories } from '../data/products';
 import ProductCard from '../components/ProductCard';
 
+// Debug: Log products to console
+console.log('Products data:', products);
+console.log('Categories:', categories);
+
 const ProductListing = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState('popular');
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
 
+  // Debug: Log search params
+  console.log('Search params:', Object.fromEntries(searchParams));
+
   // Derived state from URL params
   const selectedCategory = useMemo(() => searchParams.get('category') || 'All', [searchParams]);
   const selectedSub = useMemo(() => searchParams.get('sub') || 'All', [searchParams]);
   const searchQuery = useMemo(() => searchParams.get('search') || '', [searchParams]);
-  
+
   // Local state for sidebar filters (could also be pushed to URL, but keeping simple)
   const [selectedFlavors, setSelectedFlavors] = useState([]);
   const [isEgglessOnly, setIsEgglessOnly] = useState(false);
@@ -37,9 +44,9 @@ const ProductListing = () => {
   }, [searchParams, setSearchParams]);
 
   const toggleFlavor = (flavor) => {
-     setSelectedFlavors(prev => 
-        prev.includes(flavor) ? prev.filter(f => f !== flavor) : [...prev, flavor]
-     );
+    setSelectedFlavors(prev =>
+      prev.includes(flavor) ? prev.filter(f => f !== flavor) : [...prev, flavor]
+    );
   };
 
   const handleClearFilters = useCallback(() => {
@@ -56,11 +63,11 @@ const ProductListing = () => {
       // For now we do a simple string match against category, type or flavour
       let matchesCategory = true;
       if (selectedCategory !== 'All') {
-         if (selectedSub !== 'All') {
-            matchesCategory = product.type === selectedSub || product.flavour === selectedSub || product.name.includes(selectedSub);
-         } else {
-            matchesCategory = product.category === selectedCategory || product.type === selectedCategory;
-         }
+        if (selectedSub !== 'All') {
+          matchesCategory = product.type === selectedSub || product.flavour === selectedSub || product.name.includes(selectedSub);
+        } else {
+          matchesCategory = product.category === selectedCategory || product.type === selectedCategory;
+        }
       }
 
       const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
@@ -81,8 +88,15 @@ const ProductListing = () => {
     return result;
   }, [selectedCategory, selectedSub, searchQuery, sortBy, selectedFlavors, isEgglessOnly]);
 
-  return (
-    <div className="bg-bg-subtle min-h-screen py-8 pt-20">
+  console.log('Rendering ProductListing - filteredProducts:', filteredProducts.length);
+
+return (
+    <div className="bg-bg-subtle min-h-screen py-8 pt-24">
+      {/* Debug marker - should always show */}
+      <div style={{padding: '20px', background: 'yellow', textAlign: 'center'}}>
+        DEBUG: ProductListing page is rendering. Products count: {filteredProducts.length}
+      </div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header & Controls */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
@@ -90,7 +104,7 @@ const ProductListing = () => {
             <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
               {searchQuery ? `Search Results for "${searchQuery}"` : selectedSub !== 'All' ? selectedSub : selectedCategory === 'All' ? 'All Cakes' : selectedCategory}
             </h1>
-            <p className="text-gray-500 mt-1 text-sm">Showing {filteredProducts.length} products</p>
+            <p className="text-gray-500 mt-1 text-sm">Showing {filteredProducts.length} products (category: {selectedCategory})</p>
           </div>
 
           <div className="flex items-center gap-4 w-full md:w-auto">
@@ -118,47 +132,47 @@ const ProductListing = () => {
           {/* Sidebar Filters (Desktop) */}
           <div className="hidden md:block w-64 shrink-0 space-y-6">
             <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
-              
+
               {/* Category Filter */}
               <div className="mb-6">
-                 <h3 className="font-bold text-sm mb-3 text-gray-900 uppercase tracking-wider">Categories</h3>
-                 <div className="space-y-2">
-                   <label className="flex items-center gap-2 cursor-pointer text-sm">
-                     <input type="radio" checked={selectedCategory === 'All'} onChange={() => handleCategoryChange('All')} className="text-primary focus:ring-primary w-4 h-4" />
-                     <span className={selectedCategory === 'All' ? 'text-primary font-medium' : 'text-gray-600'}>All Cakes</span>
-                   </label>
-                   {categories.map(category => (
-                     <label key={category.name} className="flex items-center gap-2 cursor-pointer text-sm">
-                       <input type="radio" checked={selectedCategory === category.name} onChange={() => handleCategoryChange(category.name)} className="text-primary focus:ring-primary w-4 h-4" />
-                       <span className={selectedCategory === category.name ? 'text-primary font-medium' : 'text-gray-600'}>{category.name}</span>
-                     </label>
-                   ))}
-                 </div>
+                <h3 className="font-bold text-sm mb-3 text-gray-900 uppercase tracking-wider">Categories</h3>
+                <div className="space-y-2">
+                  <label className="flex items-center gap-2 cursor-pointer text-sm">
+                    <input type="radio" checked={selectedCategory === 'All'} onChange={() => handleCategoryChange('All')} className="text-primary focus:ring-primary w-4 h-4" />
+                    <span className={selectedCategory === 'All' ? 'text-primary font-medium' : 'text-gray-600'}>All Cakes</span>
+                  </label>
+                  {categories.map(category => (
+                    <label key={category.name} className="flex items-center gap-2 cursor-pointer text-sm">
+                      <input type="radio" checked={selectedCategory === category.name} onChange={() => handleCategoryChange(category.name)} className="text-primary focus:ring-primary w-4 h-4" />
+                      <span className={selectedCategory === category.name ? 'text-primary font-medium' : 'text-gray-600'}>{category.name}</span>
+                    </label>
+                  ))}
+                </div>
               </div>
 
               {/* Eggless Filter */}
               <div className="mb-6 pt-4 border-t border-gray-100">
-                 <h3 className="font-bold text-sm mb-3 text-gray-900 uppercase tracking-wider">Preference</h3>
-                 <label className="flex items-center gap-2 cursor-pointer text-sm">
-                    <input type="checkbox" checked={isEgglessOnly} onChange={(e) => setIsEgglessOnly(e.target.checked)} className="rounded text-primary focus:ring-primary w-4 h-4" />
-                    <span className="flex items-center gap-1 text-gray-600">
-                       <span className="w-3 h-3 border border-green-600 flex items-center justify-center rounded-sm bg-white"><span className="w-1.5 h-1.5 bg-green-600 rounded-full"></span></span>
-                       100% Eggless
-                    </span>
-                 </label>
+                <h3 className="font-bold text-sm mb-3 text-gray-900 uppercase tracking-wider">Preference</h3>
+                <label className="flex items-center gap-2 cursor-pointer text-sm">
+                  <input type="checkbox" checked={isEgglessOnly} onChange={(e) => setIsEgglessOnly(e.target.checked)} className="rounded text-primary focus:ring-primary w-4 h-4" />
+                  <span className="flex items-center gap-1 text-gray-600">
+                    <span className="w-3 h-3 border border-green-600 flex items-center justify-center rounded-sm bg-white"><span className="w-1.5 h-1.5 bg-green-600 rounded-full"></span></span>
+                    100% Eggless
+                  </span>
+                </label>
               </div>
 
               {/* Flavor Filter */}
               <div className="mb-6 pt-4 border-t border-gray-100">
-                 <h3 className="font-bold text-sm mb-3 text-gray-900 uppercase tracking-wider">Flavour</h3>
-                 <div className="space-y-2 max-h-48 overflow-y-auto custom-scrollbar">
-                    {allFlavors.map(flavor => (
-                       <label key={flavor} className="flex items-center gap-2 cursor-pointer text-sm">
-                          <input type="checkbox" checked={selectedFlavors.includes(flavor)} onChange={() => toggleFlavor(flavor)} className="rounded text-primary focus:ring-primary w-4 h-4" />
-                          <span className="text-gray-600">{flavor}</span>
-                       </label>
-                    ))}
-                 </div>
+                <h3 className="font-bold text-sm mb-3 text-gray-900 uppercase tracking-wider">Flavour</h3>
+                <div className="space-y-2 max-h-48 overflow-y-auto custom-scrollbar">
+                  {allFlavors.map(flavor => (
+                    <label key={flavor} className="flex items-center gap-2 cursor-pointer text-sm">
+                      <input type="checkbox" checked={selectedFlavors.includes(flavor)} onChange={() => toggleFlavor(flavor)} className="rounded text-primary focus:ring-primary w-4 h-4" />
+                      <span className="text-gray-600">{flavor}</span>
+                    </label>
+                  ))}
+                </div>
               </div>
 
             </div>
@@ -201,35 +215,35 @@ const ProductListing = () => {
               </button>
             </div>
             <div className="p-4 flex-1 overflow-y-auto">
-              
+
               <div className="mb-6">
-                 <h3 className="font-bold text-sm mb-3 text-gray-900 uppercase">Categories</h3>
-                 <div className="space-y-3">
-                   <label className="flex items-center gap-3">
-                     <input type="radio" checked={selectedCategory === 'All'} onChange={() => handleCategoryChange('All')} className="text-primary focus:ring-primary w-5 h-5" />
-                     <span className="text-gray-900 text-sm">All Cakes</span>
-                   </label>
-                   {categories.map(category => (
-                     <label key={category.name} className="flex items-center gap-3">
-                       <input type="radio" checked={selectedCategory === category.name} onChange={() => handleCategoryChange(category.name)} className="text-primary focus:ring-primary w-5 h-5" />
-                       <span className="text-gray-900 text-sm">{category.name}</span>
-                     </label>
-                   ))}
-                 </div>
+                <h3 className="font-bold text-sm mb-3 text-gray-900 uppercase">Categories</h3>
+                <div className="space-y-3">
+                  <label className="flex items-center gap-3">
+                    <input type="radio" checked={selectedCategory === 'All'} onChange={() => handleCategoryChange('All')} className="text-primary focus:ring-primary w-5 h-5" />
+                    <span className="text-gray-900 text-sm">All Cakes</span>
+                  </label>
+                  {categories.map(category => (
+                    <label key={category.name} className="flex items-center gap-3">
+                      <input type="radio" checked={selectedCategory === category.name} onChange={() => handleCategoryChange(category.name)} className="text-primary focus:ring-primary w-5 h-5" />
+                      <span className="text-gray-900 text-sm">{category.name}</span>
+                    </label>
+                  ))}
+                </div>
               </div>
 
               <div className="mb-6 pt-4 border-t border-gray-200">
-                 <h3 className="font-bold text-sm mb-3 text-gray-900 uppercase">Preference</h3>
-                 <label className="flex items-center gap-3 cursor-pointer">
-                    <input type="checkbox" checked={isEgglessOnly} onChange={(e) => setIsEgglessOnly(e.target.checked)} className="rounded text-primary focus:ring-primary w-5 h-5" />
-                    <span className="text-gray-900 text-sm">100% Eggless</span>
-                 </label>
+                <h3 className="font-bold text-sm mb-3 text-gray-900 uppercase">Preference</h3>
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input type="checkbox" checked={isEgglessOnly} onChange={(e) => setIsEgglessOnly(e.target.checked)} className="rounded text-primary focus:ring-primary w-5 h-5" />
+                  <span className="text-gray-900 text-sm">100% Eggless</span>
+                </label>
               </div>
 
             </div>
             <div className="border-t border-gray-200 p-4 flex gap-3">
               <button onClick={handleClearFilters} className="btn-outline flex-1 py-2 text-sm">
-                 Clear All
+                Clear All
               </button>
               <button onClick={() => setIsMobileFiltersOpen(false)} className="btn-primary flex-1 py-2 text-sm">
                 Apply Filters
