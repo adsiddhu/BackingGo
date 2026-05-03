@@ -10,7 +10,7 @@ export function MagicalTicket() {
 
                     {/* Image */}
                     <img
-                        src="src/media/occ-rem-desktop.png"
+                        src="/media/occ-rem-desktop.png"
                         alt="Magical Ticket"
                         className="w-full rounded-xl"
                     />

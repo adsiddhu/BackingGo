@@ -2,25 +2,25 @@ import React, { useState, useEffect } from "react";
 
 export default function HeroSection() {
     const slides = [
-      {
-        img: "src/media/Mango-Banner-web_desktop-banner (4).png"
-      },
-    
-      {
-        img: "src/media/anniversary-desktop_0.png"
-      },
-    
-      {
-        img: "src/media/Theme-Cake (2).png"
-      },
-    
-      {
-        img: "src/media/regular-cake-desktop.png"
-      },
-    
-      {
-        img: "src/media/Gourmet_Desktop.png"
-      },
+        {
+            img: "/media/Mango-Banner-web_desktop-banner (4).png"
+        },
+
+        {
+            img: "/media/anniversary-desktop_0.png"
+        },
+
+        {
+            img: "/media/Theme-Cake (2).png"
+        },
+
+        {
+            img: "/media/regular-cake-desktop.png"
+        },
+
+        {
+            img: "/media/Gourmet_Desktop.png"
+        },
     ];
 
     const [current, setCurrent] = useState(0);

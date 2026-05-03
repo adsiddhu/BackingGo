@@ -8,70 +8,70 @@ export function IndiaLoves() {
             price: 549,
             rating: 4.9,
             reviews: "8.4K",
-            img: "src/media/choco-truffle-cake0005choc-AA.jpg",
+            img: "/media/choco-truffle-cake0005choc-AA.jpg",
         },
         {
             name: "Choco Chip Truffle Cake",
             price: 549,
             rating: 4.9,
             reviews: "1.4K",
-            img: "src/media/chocolate-chip-cake0008choc-AAA.jpg",
+            img: "/media/chocolate-chip-cake0008choc-AAA.jpg",
         },
         {
             name: "Tropical Fruit N Almond Cake",
             price: 649,
             rating: 4.9,
             reviews: "2.3K",
-            img: "src/media/fresh-fruit-cake0014frui-AAAAA.jpg",
+            img: "/media/fresh-fruit-cake0014frui-AAAAA.jpg",
         },
         {
             name: "Rich Butterscotch Crunch Cake",
             price: 529,
             rating: 4.9,
             reviews: "2.7K",
-            img: "src/media/butterscotch-cake0003butt-AAAA.jpg",
+            img: "/media/butterscotch-cake0003butt-AAAA.jpg",
         },
         {
             name: "Whipped Cream Pineapple Cake",
             price: 549,
             rating: 4.9,
             reviews: "1.7K",
-            img: "src/media/sq-pineapple-cake0022pifr-AAAA.jpg",
+            img: "/media/sq-pineapple-cake0022pifr-AAAA.jpg",
         },
         {
             name: "Rich Chocolate Truffle Cake",
             price: 549,
             rating: 4.9,
             reviews: "8.4K",
-            img: "src/media/choco-truffle-cake0005choc-AA.jpg",
+            img: "/media/choco-truffle-cake0005choc-AA.jpg",
         },
         {
             name: "Choco Chip Truffle Cake",
             price: 549,
             rating: 4.9,
             reviews: "1.4K",
-            img: "src/media/chocolate-chip-cake0008choc-AAA.jpg",
+            img: "/media/chocolate-chip-cake0008choc-AAA.jpg",
         },
         {
             name: "Tropical Fruit N Almond Cake",
             price: 649,
             rating: 4.9,
             reviews: "2.3K",
-            img: "src/media/fresh-fruit-cake0014frui-AAAAA.jpg",
+            img: "/media/fresh-fruit-cake0014frui-AAAAA.jpg",
         },
         {
             name: "Rich Butterscotch Crunch Cake",
             price: 529,
             rating: 4.9,
             reviews: "2.7K",
-            img: "src/media/butterscotch-cake0003butt-AAAA.jpg",
+            img: "/media/butterscotch-cake0003butt-AAAA.jpg",
         },
         {
             name: "Whipped Cream Pineapple Cake",
             price: 549,
             rating: 4.9,
             reviews: "1.7K",
-            img: "src/media/sq-pineapple-cake0022pifr-AAAA.jpg",
+            img: "/media/sq-pineapple-cake0022pifr-AAAA.jpg",
         },
     ];
 
@@ -82,7 +82,7 @@ export function IndiaLoves() {
                 {/* Heading */}
                 <div className="text-center mb-10">
                     <h2 className="text-3xl font-semibold text-red-500 flex items-center justify-center gap-2">
-                        <img src="src/media/re-star.png" alt="star image" />
+                        <img src="/media/re-star.png" alt="star image" />
                         India Loves
                     </h2>
                     <p className="text-gray-600 text-lg">

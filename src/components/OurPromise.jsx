@@ -6,22 +6,22 @@ export function OurPromise() {
         {
             title: "ON-TIME DELIVERY",
             desc: "Because no one likes late surprises.",
-            img: "src/media/on-time-delivery_0.png",
+            img: "/media/on-time-delivery_0.png",
         },
         {
             title: "500+ DESIGNS",
             desc: "Wishes come in all shapes and sizes.",
-            img: "src/media/promise-design_0.png",
+            img: "/media/promise-design_0.png",
         },
         {
             title: "2 CR+ ORDERS",
             desc: "You can close your eyes and trust us.",
-            img: "src/media/promise-order_0.png",
+            img: "/media/promise-order_0.png",
         },
         {
             title: "BAKED FRESH",
             desc: "Spreading smiles, one slice at a time.",
-            img: "src/media/promise-baked_0.png",
+            img: "/media/promise-baked_0.png",
         },
     ];
 
@@ -31,7 +31,7 @@ export function OurPromise() {
         <section
             className="relative py-16 bg-cover bg-center"
             style={{
-                backgroundImage: `url("src/media/footer-background-mob-bk.77168cbb.svg")`,
+                backgroundImage: `url("/media/footer-background-mob-bk.77168cbb.svg")`,
             }}
         >
             {/* Overlay */}
