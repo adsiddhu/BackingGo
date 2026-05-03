@@ -5,27 +5,27 @@ export function MenuSection() {
   const categories = [
     {
       name: "CLASSIC",
-      img: "src/media/Regular-Cake.jpg",
+      img: "/media/Regular-Cake.jpg",
       path: "/classic-cakes"
     },
     {
       name: "GOURMET",
-      img: "src/media/Signature.jpg",
+      img: "/media/Signature.jpg",
       path: "/gourmet-cakes"
     },
     {
       name: "DESIGNER",
-      img: "src/media/Theme-Cake (2).jpg",
+      img: "/media/Theme-Cake (2).jpg",
       path: "/designer-cakes"
     },
     {
       name: "PHOTO CAKES",
-      img: "src/media/Photo Cake_4_0.jpg",
+      img: "/media/Photo Cake_4_0.jpg",
       path: "/photo-cakes"
     },
     {
       name: "DESSERTS",
-      img: "src/media/Dessert (2).jpg",
+      img: "/media/Dessert (2).jpg",
       path: "/desserts"
     },
   ];

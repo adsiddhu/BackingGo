@@ -8,7 +8,7 @@ export function Footer() {
       className="relative pt-12 pb-10 bg-cover bg-center"
       style={{
         backgroundImage:
-          "url('src/media/footer-background.0f80c8bb.svg')",
+          "url('/media/footer-background.0f80c8bb.svg')",
       }}
     >
       {/* Overlay for soft effect */}
