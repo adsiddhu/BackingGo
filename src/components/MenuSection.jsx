@@ -1,26 +1,32 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export function MenuSection() {
   const categories = [
     {
       name: "CLASSIC",
       img: "src/media/Regular-Cake.jpg",
+      path: "/classic-cakes"
     },
     {
       name: "GOURMET",
       img: "src/media/Signature.jpg",
+      path: "/gourmet-cakes"
     },
     {
       name: "DESIGNER",
       img: "src/media/Theme-Cake (2).jpg",
+      path: "/designer-cakes"
     },
     {
       name: "PHOTO CAKES",
       img: "src/media/Photo Cake_4_0.jpg",
+      path: "/photo-cakes"
     },
     {
       name: "DESSERTS",
       img: "src/media/Dessert (2).jpg",
+      path: "/desserts"
     },
   ];
   return (
@@ -38,9 +44,10 @@ export function MenuSection() {
         {/* Horizontal Scroll Cards */}
         <div className="flex gap-6 overflow-x-auto scrollbar-hide">
           {categories.map((item, i) => (
-            <div
+            <Link
               key={i}
-              className="min-w-[225px] cursor-pointer group"
+              to={item.path}
+              className="min-w-[225px] cursor-pointer group block"
             >
               {/* Image Card */}
               <div className="rounded-2xl overflow-hidden shadow-md">
@@ -55,7 +62,7 @@ export function MenuSection() {
               <h3 className="mt-4 font-semibold text-sm tracking-wide">
                 {item.name}
               </h3>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

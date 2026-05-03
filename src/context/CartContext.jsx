@@ -10,7 +10,9 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(() => {
     try {
       const savedCart = localStorage.getItem(STORAGE_KEYS.CART);
-      return savedCart ? JSON.parse(savedCart) : [];
+      if (!savedCart) return [];
+      const parsed = JSON.parse(savedCart);
+      return Array.isArray(parsed) ? parsed : [];
     } catch {
       return [];
     }
@@ -18,7 +20,7 @@ export const CartProvider = ({ children }) => {
 
   // Memoize cart calculations for performance
   const cartTotal = useMemo(() =>
-    cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
+    cartItems.reduce((total, item) => total + (item.finalPrice || item.price) * item.quantity, 0),
     [cartItems]
   );
 
@@ -46,10 +48,23 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = useCallback((product, quantity = 1) => {
     setCartItems(prev => {
-      const existingItem = prev.find(item => item.id === product.id);
+      // Check if item with SAME cartItemId already exists (unlikely as it's Date.now() but good practice)
+      // Or check if SAME product with SAME options (weight, flavour, eggless) exists
+      const existingItem = prev.find(item => 
+        item.id === product.id && 
+        item.selectedWeight === product.selectedWeight && 
+        item.selectedFlavor === product.selectedFlavor &&
+        item.isEggless === product.isEggless
+      );
+
       if (existingItem) {
         return prev.map(item =>
-          item.id === product.id ? { ...item, quantity: Math.min(item.quantity + quantity, 99) } : item
+          (item.id === product.id && 
+           item.selectedWeight === product.selectedWeight && 
+           item.selectedFlavor === product.selectedFlavor &&
+           item.isEggless === product.isEggless) 
+          ? { ...item, quantity: Math.min(item.quantity + quantity, 99) } 
+          : item
         );
       }
       return [...prev, { ...product, quantity: Math.min(quantity, 99) }];
@@ -57,15 +72,15 @@ export const CartProvider = ({ children }) => {
     success(`${product.name} added to cart!`);
   }, [success]);
 
-  const removeFromCart = useCallback((productId) => {
-    setCartItems(prev => prev.filter(item => item.id !== productId));
+  const removeFromCart = useCallback((identifier) => {
+    setCartItems(prev => prev.filter(item => (item.cartItemId || item.id) !== identifier));
     info('Item removed from cart');
   }, [info]);
 
-  const updateQuantity = useCallback((productId, quantity) => {
+  const updateQuantity = useCallback((identifier, quantity) => {
     if (quantity < 1) return;
     setCartItems(prev =>
-      prev.map(item => (item.id === productId ? { ...item, quantity: Math.min(quantity, 99) } : item))
+      prev.map(item => ((item.cartItemId || item.id) === identifier ? { ...item, quantity: Math.min(quantity, 99) } : item))
     );
   }, []);
 

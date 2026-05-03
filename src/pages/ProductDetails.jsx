@@ -230,15 +230,37 @@ const ProductDetails = () => {
                <p className="text-xs text-gray-400 mt-1 text-right">{cakeMessage.length}/25 characters</p>
             </div>
 
+            {/* Quantity Selector */}
+            <div className="flex flex-col gap-3">
+              <h3 className="font-semibold text-gray-900 text-sm">Select Quantity</h3>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+                  <button 
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="p-2.5 hover:bg-gray-100 transition-colors text-gray-600"
+                  >
+                    <Minus size={18} />
+                  </button>
+                  <span className="w-12 text-center font-bold text-gray-800">{quantity}</span>
+                  <button 
+                    onClick={() => setQuantity(Math.min(99, quantity + 1))}
+                    className="p-2.5 hover:bg-gray-100 transition-colors text-gray-600 border-l border-gray-300"
+                  >
+                    <Plus size={18} />
+                  </button>
+                </div>
+                <p className="text-xs text-gray-500">Maximum 99 units allowed</p>
+              </div>
+            </div>
+
             {/* Add to Cart Actions */}
-            <div className="flex items-center gap-4 pt-2">
+            <div className="flex items-center gap-4 pt-4">
               <button 
                 onClick={handleAddToCart}
-                disabled={!isPincodeValid}
-                className={`flex-1 flex items-center justify-center gap-2 py-3.5 text-base font-bold rounded-lg transition-all shadow-md ${!isPincodeValid ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-primary text-white hover:bg-pink-700 hover:shadow-lg'}`}
+                className={`flex-1 flex items-center justify-center gap-2 py-4 text-lg font-bold rounded-xl transition-all shadow-lg bg-red-500 text-white hover:bg-red-600 hover:shadow-xl active:scale-[0.98]`}
               >
-                <ShoppingCart size={20} />
-                {!isPincodeValid ? 'Check Pincode First' : 'ADD TO CART'}
+                <ShoppingCart size={22} />
+                ADD TO CART
               </button>
             </div>
             

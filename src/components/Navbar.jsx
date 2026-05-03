@@ -12,21 +12,21 @@ export default function Navbar() {
     if (item === "Cakes") {
       navigate("/cakes");
     } else if (item === "Theme Cakes") {
-      navigate("/cakes?category=Theme");
+      navigate("/theme-cakes");
     } else if (item === "By Relationship") {
-      navigate("/cakes?category=Relationship");
+      navigate("/by-relationship");
     } else if (item === "Desserts") {
-      navigate("/cakes?category=Desserts");
+      navigate("/desserts");
     } else if (item === "Birthday") {
-      navigate("/cakes?category=Birthday");
+      navigate("/birthday");
     } else if (item === "Hampers") {
-      navigate("/cakes?category=Hampers");
+      navigate("/hampers");
     } else if (item === "Anniversary") {
-      navigate("/cakes?category=Anniversary");
+      navigate("/anniversary");
     } else if (item === "Occasions") {
-      navigate("/cakes?category=Occasions");
+      navigate("/occasions");
     } else if (item === "Customized Cakes") {
-      navigate("/cakes?category=Customized");
+      navigate("/customized-cakes");
     }
   };
 
@@ -81,14 +81,17 @@ export default function Navbar() {
               <span className="font-bold text-sm">Track Order</span>
             </div>
 
-            <div className="flex flex-col items-center cursor-pointer hover:opacity-90">
+            <Link
+              to="/cart"
+              className="flex flex-col items-center cursor-pointer hover:opacity-90"
+            >
               <img
                 src="https://bkmedia.bakingo.com/ssr-static/shopping-cart.svg"
                 alt="Cart"
                 className="w-6 h-6 mb-1"
               />
               <span className="font-bold text-sm">Cart</span>
-            </div>
+            </Link>
 
             <Link
               to="/login"

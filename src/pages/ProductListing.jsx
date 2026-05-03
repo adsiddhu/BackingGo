@@ -4,24 +4,17 @@ import { Filter, Search as SearchIcon, X, Check } from 'lucide-react';
 import { products, categories } from '../data/products';
 import ProductCard from '../components/ProductCard';
 
-// Debug: Log products to console
-console.log('Products data:', products);
-console.log('Categories:', categories);
-
-const ProductListing = () => {
+const ProductListing = ({ predefinedCategory, hideHeader = false }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState('popular');
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
 
-  // Debug: Log search params
-  console.log('Search params:', Object.fromEntries(searchParams));
-
   // Derived state from URL params
-  const selectedCategory = useMemo(() => searchParams.get('category') || 'All', [searchParams]);
+  const selectedCategory = useMemo(() => searchParams.get('category') || predefinedCategory || 'All', [searchParams, predefinedCategory]);
   const selectedSub = useMemo(() => searchParams.get('sub') || 'All', [searchParams]);
   const searchQuery = useMemo(() => searchParams.get('search') || '', [searchParams]);
 
-  // Local state for sidebar filters (could also be pushed to URL, but keeping simple)
+  // Local state for sidebar filters
   const [selectedFlavors, setSelectedFlavors] = useState([]);
   const [isEgglessOnly, setIsEgglessOnly] = useState(false);
 
@@ -58,9 +51,6 @@ const ProductListing = () => {
 
   const filteredProducts = useMemo(() => {
     let result = products.filter(product => {
-      // Megamenu sub category matching logic
-      // In a real app, products would have arrays of categories/tags.
-      // For now we do a simple string match against category, type or flavour
       let matchesCategory = true;
       if (selectedCategory !== 'All') {
         if (selectedSub !== 'All') {
@@ -88,24 +78,23 @@ const ProductListing = () => {
     return result;
   }, [selectedCategory, selectedSub, searchQuery, sortBy, selectedFlavors, isEgglessOnly]);
 
-  console.log('Rendering ProductListing - filteredProducts:', filteredProducts.length);
-
-return (
-    <div className="bg-bg-subtle min-h-screen py-8 pt-24">
-      {/* Debug marker - should always show */}
-      <div style={{padding: '20px', background: 'yellow', textAlign: 'center'}}>
-        DEBUG: ProductListing page is rendering. Products count: {filteredProducts.length}
-      </div>
-      
+  return (
+    <div className="bg-bg-subtle min-h-screen py-8"> 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header & Controls */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-          <div>
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
-              {searchQuery ? `Search Results for "${searchQuery}"` : selectedSub !== 'All' ? selectedSub : selectedCategory === 'All' ? 'All Cakes' : selectedCategory}
-            </h1>
-            <p className="text-gray-500 mt-1 text-sm">Showing {filteredProducts.length} products (category: {selectedCategory})</p>
-          </div>
+          {!hideHeader ? (
+            <div>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
+                {searchQuery ? `Search Results for "${searchQuery}"` : selectedSub !== 'All' ? selectedSub : selectedCategory === 'All' ? 'All Cakes' : selectedCategory}
+              </h1>
+              <p className="text-gray-500 mt-1 text-sm">Showing {filteredProducts.length} products</p>
+            </div>
+          ) : (
+            <div className="flex-grow">
+              <p className="text-gray-500 text-sm">Showing {filteredProducts.length} products</p>
+            </div>
+          )}
 
           <div className="flex items-center gap-4 w-full md:w-auto">
             <button
@@ -115,22 +104,26 @@ return (
               <Filter size={18} /> Filters
             </button>
 
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="border border-gray-300 rounded-md py-2 px-3 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary flex-1 md:flex-none cursor-pointer"
-            >
-              <option value="popular">Most Popular</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="rating">Highest Rated</option>
-            </select>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-500 hidden md:block whitespace-nowrap">Sort By:</span>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="border border-gray-300 rounded-md py-2 px-3 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary flex-1 md:flex-none cursor-pointer"
+              >
+                <option value="popular">Most Popular</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+              </select>
+            </div>
           </div>
         </div>
 
+
         <div className="flex gap-8">
           {/* Sidebar Filters (Desktop) */}
-          <div className="hidden md:block w-64 shrink-0 space-y-6">
+          <div className="hidden md:block w-64 shrink-0 space-y-6 sticky top-24 self-start mt-10">
             <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
 
               {/* Category Filter */}

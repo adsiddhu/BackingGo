@@ -21,17 +21,24 @@ const ProductCard = ({ product }) => {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         {/* Rating Badge */}
-        <div className="absolute bottom-2 left-2 bg-white/95 backdrop-blur-sm shadow-sm text-[11px] font-bold px-1.5 py-0.5 rounded text-gray-800 flex items-center gap-1">
-          {product.rating} <Star size={10} className="text-white fill-green-600 bg-green-600 rounded-sm p-[1px]" />
+        <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-green-600 text-white text-xs font-semibold px-2 py-0.5 rounded">
+          <span>{product.rating}</span>
+          <span className="leading-none">★</span>
         </div>
-        {/* Eggless Icon */}
-        {product.isEggless && (
-          <div className="absolute top-2 right-2 bg-white p-0.5 rounded shadow-sm z-10 flex items-center">
+
+        {/* Eggless/Non-Eggless Icon */}
+        <div className="absolute top-2 right-2 bg-white p-0.5 rounded shadow-sm z-10 flex items-center">
+          {product.isEggless ? (
             <span className="w-3.5 h-3.5 border border-green-600 flex items-center justify-center rounded-sm">
               <span className="w-1.5 h-1.5 bg-green-600 rounded-full"></span>
             </span>
-          </div>
-        )}
+          ) : (
+            <span className="w-3.5 h-3.5 border border-red-600 flex items-center justify-center rounded-sm">
+              <span className="w-1.5 h-1.5 bg-red-600 rounded-full"></span>
+            </span>
+          )}
+        </div>
+
       </div>
 
       <div className="p-3 flex flex-col flex-grow">
